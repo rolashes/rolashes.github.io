@@ -177,6 +177,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .tipbox small{display:block;font:600 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
 .tipbox p{font-weight:600;max-width:none;margin:0}
 .tipbox em{display:block;font-style:normal;opacity:.8;margin-top:4px}
+.gm{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(27,7,9,.58);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:gmf .2s ease-out}
+.gm[hidden]{display:none}
+.gm-card{position:relative;width:100%;max-width:400px;max-height:calc(100dvh - 40px);overflow:auto;display:grid;justify-items:center;gap:14px;text-align:center;padding:44px 24px 28px;border-radius:32px;background:var(--soft);color:var(--ink);box-shadow:inset 0 0 0 2px var(--rojo),0 24px 60px rgba(0,0,0,.35);outline:none;animation:gmp .28s cubic-bezier(.2,.9,.3,1.2)}
+.gm-card h3{font-size:clamp(1.7rem,6vw,2.3rem);color:var(--accent)}
+.gm-x{position:absolute;top:12px;right:12px;width:44px;height:44px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--ink);transition:background .2s,color .2s,opacity .25s}
+.gm-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.gm-x:hover{background:var(--ink);color:var(--bg)}
+.gm-x:disabled{opacity:.3;pointer-events:none}
+@keyframes gmf{from{opacity:0}}
+@keyframes gmp{from{opacity:0;transform:translateY(14px) scale(.96)}}
 .note{margin:26px 0 0;max-width:64ch;font-size:.95rem;line-height:1.5;padding:14px 18px;border-radius:16px;background:var(--bg);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
 .note b{color:var(--accent)}
 </style>
@@ -266,13 +276,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p>Toca los logos y esquiva lo que no se debe usar. Un solo fallo y se acaba.</p>
           <button class="btn big-play" id="play" type="button">Jugar</button>
         </div>
-        <div class="in" id="v2" hidden>
-          <h3>¡Ups, se acabó!</h3>
-          <div class="big-score" id="fs">0</div>
-          <div class="tipbox" aria-live="polite"><small>Consejo de cuidado</small><p id="tt"></p><em id="te"></em></div>
-          <button class="btn big-play" id="again" type="button">Jugar otra vez</button>
-          <a class="btn ghost" href="https://wa.me/34645653038?text=Hola%2C%20quiero%20reservar%20cita%20en%20RO%20Lashes%20Studio" target="_blank" rel="noopener">Reservar cita</a>
-        </div>
       </div>
     </div>
   </div>
@@ -294,6 +297,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <footer><div class="wrap"><span>RO Lashes Studio</span><span>Para dramas, la vida. Para tus pestañas, nosotras.</span></div></footer>
+
+<div class="gm" id="gm" hidden>
+  <div class="gm-card" role="dialog" aria-modal="true" aria-labelledby="gm-title" tabindex="-1">
+    <button class="gm-x" id="gmx" type="button" aria-label="Cerrar y volver a jugar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h3 id="gm-title">¡Ups, se acabó!</h3>
+    <div class="big-score" id="fs">0</div>
+    <div class="tipbox"><small>Consejo de cuidado</small><p id="tt"></p><em id="te"></em></div>
+  </div>
+</div>
 
 <script>
 var S=function(){return '<svg class="spark" viewBox="0 0 24 24"><use href="#sp"/></svg>'};
@@ -335,7 +349,7 @@ upd();
   // cada símbolo prohibido enlaza con el consejo correspondiente de la sección Cuidados (tp)
   var BADS=[['rimel',2,'Nada de rímel con extensiones.'],['aceite',3,'Los aceites deshacen el adhesivo.'],['rizador',4,'El rizador puede romper las extensiones.'],['bastoncillo',5,'Nada de bastoncillos ni algodón.']];
   var $=function(i){return document.getElementById(i)};
-  var game=$('game'),ov=$('ov'),v1=$('v1'),v2=$('v2'),scoreEl=$('score'),cap=$('cap'),fs=$('fs'),tt=$('tt'),te=$('te');
+  var game=$('game'),ov=$('ov'),gm=$('gm'),gmx=$('gmx'),scoreEl=$('score'),cap=$('cap'),fs=$('fs'),tt=$('tt'),te=$('te');
   $('legbad').innerHTML=ICONS.rimel;
   var items=[],score=0,running=false,last=0,acc=0,next=0,raf=0,capT=0,spawned=0,lastTip=-1;
   function setScore(v){score=v;scoreEl.textContent=score}
@@ -394,10 +408,24 @@ upd();
     if(i===lastTip)i=(i+1)%tp.length;lastTip=i;
     fs.textContent=score+(score===1?' punto':' puntos');
     tt.textContent=tp[i][0];te.textContent=tp[i][1];
-    v1.hidden=true;v2.hidden=false;ov.hidden=false;ov.scrollTop=0;
+    // detrás de la ventana queda la pantalla de inicio con "Jugar"; la ventana se abre sin botones de acción
+    ov.hidden=false;ov.scrollTop=0;openModal();
   }
+  var gmT=0;
+  function openModal(){
+    gm.hidden=false;document.documentElement.style.overflow='hidden';
+    // la cruz se activa tras un instante para que los toques rápidos de la partida no la cierren sin querer
+    gmx.disabled=true;clearTimeout(gmT);gmT=setTimeout(function(){gmx.disabled=false},700);
+    gm.querySelector('.gm-card').focus({preventScroll:true});
+  }
+  function closeModal(){
+    if(gm.hidden||gmx.disabled)return;
+    gm.hidden=true;document.documentElement.style.overflow='';
+    $('play').focus({preventScroll:true});
+  }
+  gmx.onclick=closeModal;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
   $('play').onclick=start;
-  $('again').onclick=start;
 })();
 </script>
 </body>
