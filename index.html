@@ -178,12 +178,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .tipbox small{display:block;font:600 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
 .tipbox p{font-weight:600;max-width:none;margin:0}
 .tipbox em{display:block;font-style:normal;opacity:.8;margin-top:4px}
-.tg{flex:none;width:40px;height:40px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--ink);transition:background .25s,color .25s,transform .25s}
-.tg:hover{background:var(--ink);color:var(--bg);transform:rotate(18deg)}
-.tg svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.tg .sun{display:none}
-:root[data-eff="dark"] .tg .sun{display:block}
-:root[data-eff="dark"] .tg .moon{display:none}
+.thm{flex:none;width:40px;height:40px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--ink);transition:background .25s,color .25s,transform .25s}
+.thm:hover{background:var(--ink);color:var(--bg);transform:rotate(18deg)}
+.thm svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.thm .sun{display:none}
+:root[data-eff="dark"] .thm .sun{display:block}
+:root[data-eff="dark"] .thm .moon{display:none}
 :root[data-theme="dark"] .hero h1{color:var(--beige)}:root[data-theme="dark"] .hero h1 .l:nth-child(2){color:var(--accent)}
 .gm{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(27,7,9,.58);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:gmf .2s ease-out}
 .gm[hidden]{display:none}
@@ -209,7 +209,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <a class="brand" href="#inicio" aria-label="RO Lashes Studio, inicio"><span class="logo"></span></a>
   <div class="links">
     <a href="#servicios">Servicios</a><a href="#fidelidad">Fidelidad</a><a href="#cuidados">Cuidados</a><a href="#juego">Juega</a><a href="#contacto">Contacto</a>
-    <button class="tg" id="tg" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
+    <button class="thm" id="thm" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
       <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
     </button>
@@ -442,7 +442,7 @@ upd();
 
 // tema claro / oscuro: por defecto el del dispositivo; el botón guarda la elección del visitante
 (function(){
-  var root=document.documentElement,btn=document.getElementById('tg'),mq=window.matchMedia('(prefers-color-scheme: dark)');
+  var root=document.documentElement,btn=document.getElementById('thm'),mq=window.matchMedia('(prefers-color-scheme: dark)');
   function eff(){var t=root.getAttribute('data-theme');return t==='dark'||t==='light'?t:(mq.matches?'dark':'light')}
   function sync(){var e=eff();root.setAttribute('data-eff',e);btn.setAttribute('aria-label',e==='dark'?'Cambiar a modo claro':'Cambiar a modo oscuro')}
   btn.addEventListener('click',function(){
