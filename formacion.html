@@ -42,6 +42,8 @@ nav.on{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:b
   .links a.btn.ghost{border:1.5px solid var(--ink)}
 }
 
+
+.thm{align-self:center;margin-top:0}
  .hero{padding:calc(clamp(90px,14vw,170px) + 48px) 0 clamp(75px,10vw,120px);background:var(--soft);position:relative;overflow:hidden}.eyebrow{color:var(--accent);font-size:.82rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2rem,5.6vw,5.1rem);line-height:1.08;color:var(--burdeos);max-width:1000px;margin:24px 0}.hero p{font-size:clamp(1.1rem,2vw,1.3rem);max-width:620px;margin:0 0 30px}.hero .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.pill{border:1px solid var(--line);border-radius:99px;padding:9px 16px;font-size:.92rem}
 section{padding:clamp(75px,10vw,125px) 0}.intro{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(35px,8vw,100px);align-items:start}.intro h2,.content h2,.cta h2{font-size:clamp(2.3rem,5.6vw,4.6rem);color:var(--accent)}.intro p{margin:0 0 18px}.content{background:var(--soft)}.section-head{max-width:680px;margin-bottom:42px}.section-head p{max-width:55ch}.topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.topic{padding:25px 26px;border:1.5px solid var(--line);border-radius:22px;background:color-mix(in srgb,var(--bg) 55%,transparent)}.topic h3{font-size:1.5rem;color:var(--accent);margin-bottom:9px}.topic p{margin:0;opacity:.85}
 .includes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(35px,8vw,100px);align-items:center}.checklist{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:15px}.checklist li{padding:0 0 15px 30px;border-bottom:1px solid var(--line);position:relative}.checklist li:before{content:"✳";position:absolute;left:0;top:0;color:var(--accent)}
@@ -62,16 +64,16 @@ nav{gap:12px}.thm{margin-left:auto}.menu-toggle{display:block;margin-left:0}
 <body>
 <nav id="nav">
 <a class="brand" href="index.html#inicio" aria-label="RO Lashes Studio, inicio"><span class="logo"></span></a>
-<button class="thm" id="thm" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
-<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
-<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
-</button>
-  <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-links" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 <div class="links" id="main-links">
 <a href="index.html#servicios">Servicios</a><a href="formacion.html" aria-current="page">Formación</a><a href="index.html#fidelidad">Fidelidad</a><a href="index.html#cuidados">Cuidados</a><a href="index.html#juego">Juega</a><a href="index.html#contacto">Contacto</a>
 
 <a class="btn" href="https://wa.me/34645653038?text=Hola%2C%20quiero%20reservar%20cita%20en%20RO%20Lashes%20Studio" target="_blank" rel="noopener">Reservar cita</a>
 </div>
+<button class="thm" id="thm" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
+<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
+</button>
+<button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-links" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </nav>
 <header class="hero"><div class="wrap">
 <span class="eyebrow">RO Lashes Studio · Formación</span>
