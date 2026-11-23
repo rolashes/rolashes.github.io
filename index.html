@@ -49,13 +49,13 @@ nav.on{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:b
 .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-5.5px) rotate(-45deg)}
 @media(max-width:720px){
   nav{gap:12px}
-  .menu-toggle{display:block;margin-left:auto}
+  .thm{margin-left:auto}
+  .menu-toggle{display:block;margin-left:0}
   .links{display:none;position:absolute;top:calc(100% - 1px);left:0;right:0;padding:16px clamp(18px,5vw,28px) 22px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 12px 20px rgba(40,8,8,.1);align-items:stretch;gap:0;flex-direction:column}
   .links.open{display:flex}
   .links a{display:block!important;padding:12px 4px;border-bottom:1px solid var(--line)}
   .links a.btn{align-self:stretch;justify-content:center;margin-top:12px;border:0}
   .links a.btn.ghost{border:1.5px solid var(--ink)}
-  .links .thm{align-self:flex-start;margin-top:12px}
 }
 
 /* hero */
@@ -119,9 +119,14 @@ section{padding:clamp(80px,12vw,150px) 0}
 @media(max-width:860px){.sv{grid-template-columns:1fr}.sv .head{position:static}}
 
 /* acceso a formación */
-.training-teaser{padding:clamp(58px,8vw,100px) 0;background:var(--soft)}
+.training-teaser{padding:clamp(68px,9vw,112px) 0;background:var(--granate);color:var(--beige)}
+.training-teaser .eyebrow{color:#e0788d}
+.training-teaser h2{color:#e3d2c3}
+.training-teaser p{color:var(--beige);opacity:.9}
+.training-teaser .btn{background:var(--beige);color:var(--granate)!important}
+.training-teaser .btn:hover{background:#fff4ea;color:var(--granate)!important}
 .training-teaser-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,6vw,80px);align-items:center}
-.training-teaser h2{font-size:clamp(2.1rem,4.5vw,3.8rem);color:var(--accent);margin-top:12px}
+.training-teaser h2{font-size:clamp(2.1rem,4.5vw,3.8rem);color:#e3d2c3;margin-top:12px}
 .training-teaser p{max-width:48ch;margin:0 0 24px}
 @media(max-width:760px){.training-teaser-inner{grid-template-columns:1fr}}
 /* fidelidad */
@@ -247,13 +252,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <nav id="nav">
   <a class="brand" href="#inicio" aria-label="RO Lashes Studio, inicio"><span class="logo"></span></a>
-  <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-links" aria-label="Abrir menú"><span></span><span></span><span></span></button>
-  <div class="links" id="main-links">
-    <a href="#servicios">Servicios</a><a class="btn ghost training-link" href="formacion.html">Formación</a><a href="#fidelidad">Fidelidad</a><a href="#cuidados">Cuidados</a><a href="#juego">Juega</a><a href="#contacto">Contacto</a>
-    <button class="thm" id="thm" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
+  <button class="thm" id="thm" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
       <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
     </button>
+  <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-links" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <div class="links" id="main-links">
+    <a href="#servicios">Servicios</a><a href="formacion.html">Formación</a><a href="#fidelidad">Fidelidad</a><a href="#cuidados">Cuidados</a><a href="#juego">Juega</a><a href="#contacto">Contacto</a>
+    
     <a class="btn" href="https://wa.me/34645653038?text=Hola%2C%20quiero%20reservar%20cita%20en%20RO%20Lashes%20Studio" target="_blank" rel="noopener">Reservar cita</a>
   </div>
 </nav>
