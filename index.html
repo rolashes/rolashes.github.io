@@ -76,22 +76,32 @@ section{padding:clamp(80px,12vw,150px) 0}
 .sv .head{position:sticky;top:110px;align-self:start}
 .sv h2,.fid h2,.care h2,.ct h2{font-size:clamp(2.3rem,5.6vw,4.6rem);color:var(--accent)}
 .sv .head p{max-width:30ch;margin-top:20px}
-.row{display:flex;align-items:baseline;gap:18px;padding:26px 0;border-bottom:1.5px solid var(--line);cursor:default;transition:padding .35s,color .35s;opacity:0;transform:translateX(26px)}
-.row.in{opacity:1;transform:none;transition:opacity .7s,transform .7s,padding .35s,color .35s}
-.row:hover{padding-left:18px;color:var(--accent)}
-.row h3{font-size:clamp(1.3rem,2.4vw,1.9rem)}
-.row small{display:block;font:400 .95rem/1.4 var(--sans);opacity:.75;margin-top:6px}
-.row .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-6px);min-width:20px}
-.row b{font:400 clamp(1.5rem,3vw,2.3rem)/1 var(--display);white-space:nowrap}
-.service-group{margin:0 0 42px}
+.service-group{margin:0 0 14px;border:1.5px solid var(--line);border-radius:18px;overflow:hidden;background:color-mix(in srgb,var(--soft) 48%,transparent)}
 .service-group:last-of-type{margin-bottom:0}
-.service-group h3{font-size:clamp(1.45rem,2.5vw,2rem);color:var(--accent);padding:0 0 10px;border-bottom:1.5px solid var(--line)}
-.service-group .row:first-of-type{padding-top:18px}
-.service-group .row{gap:14px}
-.service-group .row small{max-width:42ch}
-.service-note{margin:34px 0 0;padding:20px 22px;border:1.5px solid var(--line);border-left:4px solid var(--accent);border-radius:4px 18px 18px 4px;background:var(--soft);font-size:.98rem}
+.service-group>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;cursor:pointer;color:var(--accent);font:400 clamp(1.35rem,2.5vw,1.85rem)/1.15 var(--display);transition:background .25s}
+.service-group>summary::-webkit-details-marker{display:none}
+.service-group>summary::after{content:"+";flex:none;font:400 1.7rem/1 var(--sans);transition:transform .25s}
+.service-group[open]>summary{border-bottom:1px solid var(--line);background:var(--soft)}
+.service-group[open]>summary::after{content:"−"}
+.service-group>summary:hover{background:var(--soft)}
+.service-items{padding:0 22px 8px}
+.service-item{width:100%;display:flex;align-items:baseline;gap:14px;padding:19px 0;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);text-align:left;font:inherit;cursor:pointer;opacity:0;transform:translateX(18px);transition:opacity .5s,transform .5s,color .25s}
+.service-item:last-child{border-bottom:0}
+.service-item.in{opacity:1;transform:none}
+.service-item:hover,.service-item[aria-expanded="true"]{color:var(--accent)}
+.service-item .service-name{min-width:0}
+.service-item .service-name strong{display:block;font:400 clamp(1.15rem,2vw,1.5rem)/1.2 var(--display)}
+.service-item small{display:block;font:400 .9rem/1.4 var(--sans);opacity:.75;margin-top:5px;max-width:48ch}
+.service-item .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-5px);min-width:12px}
+.service-item .price{font:400 clamp(1.45rem,2.7vw,2rem)/1 var(--display);white-space:nowrap;min-width:58px;text-align:right}
+.service-item .price::before{content:"Consultar";font:500 .78rem var(--sans);opacity:.7}
+.service-item[aria-expanded="true"] .price::before{content:none}
+.service-item .price .amount{display:none}
+.service-item[aria-expanded="true"] .price .amount{display:inline}
+.service-hint{margin:0 0 16px;font-size:.82rem;opacity:.68}
+.service-note{margin:26px 0 0;padding:20px 22px;border:1.5px solid var(--line);border-left:4px solid var(--accent);border-radius:4px 18px 18px 4px;background:var(--soft);font-size:.98rem}
 .service-note strong{color:var(--accent)}
-@media(max-width:520px){.service-group .row{gap:10px}.service-group .row h3{font-size:1.25rem}.service-group .row b{font-size:1.55rem}.service-group .row .dots{min-width:8px}}
+@media(max-width:520px){.service-group>summary{padding:18px}.service-items{padding:0 16px 6px}.service-item{gap:9px;padding:17px 0}.service-item .service-name strong{font-size:1.12rem}.service-item .price{font-size:1.45rem;min-width:54px}.service-item .dots{min-width:5px}.service-item small{font-size:.84rem}}
 @media(max-width:860px){.sv{grid-template-columns:1fr}.sv .head{position:static}}
 
 /* fidelidad */
@@ -365,9 +375,10 @@ var serviceGroups=[
     ['Radiofrecuencia facial · Bono de 10 sesiones','','600€']
   ]}
 ];
-document.getElementById('list').innerHTML=serviceGroups.map(function(g){return '<div class="service-group"><h3>'+g.title+'</h3>'+g.items.map(function(s){return '<div class="row"><div><h3>'+s[0]+'</h3>'+(s[1]?'<small>'+s[1]+'</small>':'')+'</div><span class="dots"></span><b>'+s[2]+'</b></div>'}).join('')+'</div>'}).join('')+'<p class="service-note"><strong>Reserva de cita:</strong> todas las citas se agendan bajo una reserva de 20€.</p>';
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var r=e.target,i=[].indexOf.call(r.parentNode.children,r);setTimeout(function(){r.classList.add('in')},i*90);io.unobserve(r)}})},{threshold:.2});
-document.querySelectorAll('.row').forEach(function(r){io.observe(r)});
+document.getElementById('list').innerHTML='<p class="service-hint">Despliega una categoría y pulsa sobre cada servicio para consultar su precio.</p>'+serviceGroups.map(function(g,i){return '<details class="service-group"><summary>'+g.title+'</summary><div class="service-items">'+g.items.map(function(s,j){return '<button class="service-item" type="button" aria-expanded="false"><span class="service-name"><strong>'+s[0]+'</strong>'+(s[1]?'<small>'+s[1]+'</small>':'')+'</span><span class="dots" aria-hidden="true"></span><span class="price" aria-label="Precio oculto"><span class="amount">'+s[2]+'</span></span></button>'}).join('')+'</div></details>'}).join('')+'<p class="service-note"><strong>Reserva de cita:</strong> todas las citas se agendan bajo una reserva de 20€.</p>';
+document.querySelectorAll('.service-item').forEach(function(btn){btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!open));btn.querySelector('.price').setAttribute('aria-label',open?'Precio oculto':'Precio: '+btn.querySelector('.amount').textContent)})});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var r=e.target,i=[].indexOf.call(r.parentNode.children,r);setTimeout(function(){r.classList.add('in')},i*70);io.unobserve(r)}})},{threshold:.1});
+document.querySelectorAll('.service-item').forEach(function(r){io.observe(r)});
 // consejos
 var tp=[['No mojar y evitar el vapor caliente en 24/48 h','Deja que el adhesivo cure por completo.'],['Cepillarlas solamente cuando estén despeinadas','Con un cepillo limpio y suave.'],['No aplicar rímel, tampoco en las pestañas de abajo','Ensucia y debilita las extensiones.'],['No usar productos a base de aceites cerca de las pestañas','Los aceites deshacen el adhesivo.'],['No usar rizador de pestañas','Puede romper o doblar las extensiones.'],['No limpiar con bastoncillos ni con discos de algodón','Las fibras se enganchan.'],['Lavar en profundidad 2 veces por semana','Con agua tibia o fría y frotando con jabón.'],['No arrancarlas ni intentar quitarlas manualmente','Dañarías tus pestañas naturales.']];
 document.getElementById('rail').innerHTML=tp.map(function(t){return '<article class="tip">'+S()+'<div><p>'+t[0]+'</p><em>'+t[1]+'</em></div></article>'}).join('');
