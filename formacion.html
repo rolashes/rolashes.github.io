@@ -11,11 +11,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600&family=Rozha+One&display=swap" rel="stylesheet">
 <style>
-:root{--rojo:#99253d;--burdeos:#722026;--granate:#51100f;--beige:#e3d2c3;--bg:#e3d2c3;--ink:#51100f;--accent:#99253d;--line:rgba(81,16,15,.28);--soft:#ecdfd2;--logo:url(data:image/png;--display:"Rozha One","Bodoni 72",Georgia,serif;--sans:"Cabin","Gill Sans",Calibri,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{
+  --rojo:#99253d;--burdeos:#722026;--granate:#51100f;--beige:#e3d2c3;--gris:#929994;
+  --bg:#e3d2c3;--ink:#51100f;--accent:#99253d;--line:rgba(81,16,15,.28);--soft:#ecdfd2;
+  --display:"Rozha One","Bodoni 72",Georgia,serif;--sans:"Cabin","Gill Sans","Gill Sans MT",Calibri,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#2b0a0a;--ink:#e3d2c3;--accent:#e0788d;--line:rgba(227,210,195,.28);--soft:#3a1213}}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#2b0a0a;--ink:#e3d2c3;--accent:#e0788d;--line:rgba(227,210,195,.28);--soft:#3a1213}
 *,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .wrap{max-width:1120px;margin:auto;padding:0 clamp(22px,5vw,60px)}h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.04;margin:0;letter-spacing:-.01em}
+/* nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:40;padding:calc(env(safe-area-inset-top,0px) + 14px) clamp(16px,4vw,44px) 14px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .3s,box-shadow .3s}
 nav.on{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
 .brand{font-family:var(--display);font-size:1.35rem;text-decoration:none;color:var(--accent);transform:rotate(-3deg);white-space:nowrap}
@@ -44,7 +50,8 @@ nav.on{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:b
 
 
 .thm{align-self:center;margin-top:0}
- .hero{padding:calc(clamp(90px,14vw,170px) + 48px) 0 clamp(75px,10vw,120px);background:var(--soft);position:relative;overflow:hidden}.eyebrow{color:var(--accent);font-size:.82rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2rem,5.6vw,5.1rem);line-height:1.08;color:var(--burdeos);max-width:1000px;margin:24px 0}.hero p{font-size:clamp(1.1rem,2vw,1.3rem);max-width:620px;margin:0 0 30px}.hero .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.pill{border:1px solid var(--line);border-radius:99px;padding:9px 16px;font-size:.92rem}
+
+.hero{padding:calc(clamp(90px,14vw,170px) + 48px) 0 clamp(75px,10vw,120px);background:var(--soft);position:relative;overflow:hidden}.eyebrow{color:var(--accent);font-size:.82rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2rem,5.6vw,5.1rem);line-height:1.08;color:var(--burdeos);max-width:1000px;margin:24px 0}.hero p{font-size:clamp(1.1rem,2vw,1.3rem);max-width:620px;margin:0 0 30px}.hero .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.pill{border:1px solid var(--line);border-radius:99px;padding:9px 16px;font-size:.92rem}
 section{padding:clamp(75px,10vw,125px) 0}.intro{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(35px,8vw,100px);align-items:start}.intro h2,.content h2,.cta h2{font-size:clamp(2.3rem,5.6vw,4.6rem);color:var(--accent)}.intro p{margin:0 0 18px}.content{background:var(--soft)}.section-head{max-width:680px;margin-bottom:42px}.section-head p{max-width:55ch}.topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.topic{padding:25px 26px;border:1.5px solid var(--line);border-radius:22px;background:color-mix(in srgb,var(--bg) 55%,transparent)}.topic h3{font-size:1.5rem;color:var(--accent);margin-bottom:9px}.topic p{margin:0;opacity:.85}
 .includes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(35px,8vw,100px);align-items:center}.checklist{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:15px}.checklist li{padding:0 0 15px 30px;border-bottom:1px solid var(--line);position:relative}.checklist li:before{content:"✳";position:absolute;left:0;top:0;color:var(--accent)}
 .price{background:var(--granate);color:var(--beige)}.price-grid{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.price h2{font-size:clamp(2.5rem,5vw,4.5rem);color:#e0788d}.amount{font:400 clamp(3.5rem,8vw,6rem)/1 var(--display);white-space:nowrap;color:#e3d2c3}.price p{max-width:55ch}.price .small{opacity:.78;font-size:.95rem}
@@ -59,6 +66,17 @@ nav{gap:12px}.thm{margin-left:auto}.menu-toggle{display:block;margin-left:0}
 .intro,.includes,.price-grid{grid-template-columns:1fr}.topics{grid-template-columns:1fr}.amount{font-size:4rem}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.logo{display:block;aspect-ratio:760/480;background:currentColor;-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
+.brand{display:block;width:84px;transform:none;color:var(--accent)}
+.brand .logo{width:100%}
+
+.thm{flex:none;width:40px;height:40px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--ink);transition:background .25s,color .25s,transform .25s}
+.thm:hover{background:var(--ink);color:var(--bg);transform:rotate(18deg)}
+.thm svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.thm .sun{display:none}
+:root[data-eff="dark"] .thm .sun{display:block}
+:root[data-eff="dark"] .thm .moon{display:none}
 </style>
 </head>
 <body>
