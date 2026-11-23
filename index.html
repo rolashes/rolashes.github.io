@@ -83,6 +83,15 @@ section{padding:clamp(80px,12vw,150px) 0}
 .row small{display:block;font:400 .95rem/1.4 var(--sans);opacity:.75;margin-top:6px}
 .row .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-6px);min-width:20px}
 .row b{font:400 clamp(1.5rem,3vw,2.3rem)/1 var(--display);white-space:nowrap}
+.service-group{margin:0 0 42px}
+.service-group:last-of-type{margin-bottom:0}
+.service-group h3{font-size:clamp(1.45rem,2.5vw,2rem);color:var(--accent);padding:0 0 10px;border-bottom:1.5px solid var(--line)}
+.service-group .row:first-of-type{padding-top:18px}
+.service-group .row{gap:14px}
+.service-group .row small{max-width:42ch}
+.service-note{margin:34px 0 0;padding:20px 22px;border:1.5px solid var(--line);border-left:4px solid var(--accent);border-radius:4px 18px 18px 4px;background:var(--soft);font-size:.98rem}
+.service-note strong{color:var(--accent)}
+@media(max-width:520px){.service-group .row{gap:10px}.service-group .row h3{font-size:1.25rem}.service-group .row b{font-size:1.55rem}.service-group .row .dots{min-width:8px}}
 @media(max-width:860px){.sv{grid-template-columns:1fr}.sv .head{position:static}}
 
 /* fidelidad */
@@ -324,9 +333,39 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <script>
 var S=function(){return '<svg class="spark" viewBox="0 0 24 24"><use href="#sp"/></svg>'};
-// servicios
-var sv=[['Nueva puesta de extensiones','Todos los volúmenes',60],['Relleno a las 3 semanas','',45],['Relleno a las 4 semanas','',50],['Retoque extra','Después de tu cita y antes de las 3 semanas',25],['Extensiones con volumen 5D','',65],['Rellenos 5D','',55],['Extensiones exprés','Una hora',40]];
-document.getElementById('list').innerHTML=sv.map(function(s){return '<div class="row"><div><h3>'+s[0]+'</h3>'+(s[1]?'<small>'+s[1]+'</small>':'')+'</div><span class="dots"></span><b>'+s[2]+'€</b></div>'}).join('');
+// servicios: organizados por tipo para facilitar la consulta
+var serviceGroups=[
+  {title:'Extensiones de pestañas',items:[
+    ['Nueva puesta de extensiones','Todos los volúmenes','60€'],
+    ['Relleno a las 3 semanas','','45€'],
+    ['Relleno a las 4 semanas','','50€'],
+    ['Retoque extra','Después de tu cita y antes de las 3 semanas','25€'],
+    ['Extensiones con volumen 5D','','65€'],
+    ['Rellenos 5D','','55€'],
+    ['Extensiones exprés','Duración: 1 h 30 min. Este servicio no admite rellenos.','40€']
+  ]},
+  {title:'Cejas y mirada',items:[
+    ['Laminado de cejas','','35€'],
+    ['Laminado de cejas + tinte','','40€'],
+    ['Depilación de cejas','','5€'],
+    ['Tinte de cejas + depilación','','15€'],
+    ['Lifting de pestañas','','40€']
+  ]},
+  {title:'Micropigmentación',items:[
+    ['Micropigmentación de cejas','Primera sesión + primer retoque incluido. Retoque adicional hasta 6 meses: 50€','290€'],
+    ['Micropigmentación de labios','Primera sesión + primer retoque incluido. Retoque adicional hasta 6 meses: 50€','290€'],
+    ['Micropigmentación de ojos','Primera sesión + primer retoque incluido. Retoque adicional hasta 6 meses: 50€','290€']
+  ]},
+  {title:'Tratamientos faciales y corporales',items:[
+    ['Maderoterapia · 1 sesión','','50€'],
+    ['Maderoterapia · Bono de 5 sesiones','','225€'],
+    ['Presoterapia · 1 sesión','','45€'],
+    ['Presoterapia · Bono de 5 sesiones','','200€'],
+    ['Radiofrecuencia facial · 1 sesión','','70€'],
+    ['Radiofrecuencia facial · Bono de 10 sesiones','','600€']
+  ]}
+];
+document.getElementById('list').innerHTML=serviceGroups.map(function(g){return '<div class="service-group"><h3>'+g.title+'</h3>'+g.items.map(function(s){return '<div class="row"><div><h3>'+s[0]+'</h3>'+(s[1]?'<small>'+s[1]+'</small>':'')+'</div><span class="dots"></span><b>'+s[2]+'</b></div>'}).join('')+'</div>'}).join('')+'<p class="service-note"><strong>Reserva de cita:</strong> todas las citas se agendan bajo una reserva de 20€.</p>';
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var r=e.target,i=[].indexOf.call(r.parentNode.children,r);setTimeout(function(){r.classList.add('in')},i*90);io.unobserve(r)}})},{threshold:.2});
 document.querySelectorAll('.row').forEach(function(r){io.observe(r)});
 // consejos
