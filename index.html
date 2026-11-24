@@ -173,10 +173,11 @@ section{padding:clamp(80px,12vw,150px) 0}
 .ig-work h2{font-size:clamp(2.3rem,5.6vw,4.6rem);color:var(--accent)}
 .ig-work .hd p{max-width:38ch;margin:0}
 .ig-rail{display:flex;gap:22px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:8px clamp(20px,5vw,56px) 28px;scrollbar-width:thin;scrollbar-color:var(--rojo) transparent}
-.ig-card{flex:0 0 360px;min-width:0;scroll-snap-align:start;background:transparent;border:0;border-radius:0;padding:0;overflow:visible}
+.ig-card{flex:0 0 360px;height:560px;min-width:0;align-self:flex-start;scroll-snap-align:start;background:transparent;border:0;border-radius:0;padding:0;overflow:hidden}
 .ig-card blockquote.instagram-media{width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;border:0!important;box-shadow:none!important}
+.ig-card iframe{max-width:100%!important}
 .ig-fallback{display:block;padding:18px 12px;text-align:center;color:var(--accent);font-weight:600}
-@media(max-width:600px){.ig-rail{gap:14px;padding-left:20px;padding-right:20px;scroll-snap-type:x mandatory;scroll-padding-inline:20px}.ig-card{flex-basis:min(326px,84vw)}.ig-work .hd{margin-bottom:24px}}
+@media(max-width:600px){.ig-rail{gap:14px;padding-left:20px;padding-right:20px;scroll-snap-type:x mandatory;scroll-padding-inline:20px}.ig-card{flex-basis:min(326px,84vw);height:520px}.ig-work .hd{margin-bottom:24px}}
 @media(prefers-reduced-motion:reduce){.ig-rail{scroll-behavior:auto}}
  
 /* contacto */
