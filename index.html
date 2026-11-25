@@ -168,16 +168,13 @@ section{padding:clamp(80px,12vw,150px) 0}
 .tip em{display:block;font:400 .98rem/1.45 var(--sans);font-style:normal;opacity:.78;margin-top:12px}
 
 /* galería horizontal de trabajos */
-.ig-work{background:var(--soft);overflow:hidden;padding:clamp(58px,7vw,88px) 0}
-.ig-work .hd{display:flex;justify-content:space-between;align-items:end;gap:22px;flex-wrap:wrap;margin-bottom:30px}
-.ig-work h2{font-size:clamp(2.3rem,5.6vw,4.6rem);color:var(--accent)}
-.ig-work .hd p{max-width:38ch;margin:0}
-.gallery-rail{overflow:hidden;padding:0 clamp(22px,5vw,60px) 18px}
+.ig-work{background:var(--soft);overflow:hidden;padding:clamp(34px,4vw,54px) 0}
+.gallery-rail{overflow:hidden;padding:0 0 14px;width:100vw;position:relative;left:50%;transform:translateX(-50%)}
 .gallery-track{display:flex;width:max-content;will-change:transform;animation:gallery-marquee 42s linear infinite}
 .gallery-set{display:flex;flex:none;gap:16px;padding-right:16px}
 .gallery-rail:hover .gallery-track,.gallery-rail:focus-within .gallery-track{animation-play-state:paused}
 @keyframes gallery-marquee{to{transform:translateX(-50%)}}
-.gallery-item{position:relative;display:block;flex:0 0 clamp(250px,31vw,390px);height:clamp(310px,38vw,460px);min-width:0;overflow:hidden;padding:0;border:0;border-radius:3px;background:var(--granate);cursor:zoom-in;text-align:left}
+.gallery-item{position:relative;display:block;flex:0 0 clamp(205px,24vw,300px);height:clamp(255px,30vw,355px);min-width:0;overflow:hidden;padding:0;border:0;border-radius:3px;background:var(--granate);cursor:zoom-in;text-align:left}
 .gallery-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .gallery-item::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(35,5,8,.25));opacity:.75}
 .gallery-item:hover img{transform:scale(1.045)}
@@ -187,7 +184,7 @@ section{padding:clamp(80px,12vw,150px) 0}
 .gallery-lightbox img{display:block;max-width:min(92vw,1200px);max-height:86vh;object-fit:contain;box-shadow:0 20px 70px rgba(0,0,0,.35)}
 .gallery-close{position:absolute;top:22px;right:22px;width:46px;height:46px;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:transparent;color:white;font:400 1.8rem/1 var(--sans);cursor:pointer}
 .gallery-caption{position:absolute;bottom:20px;left:20px;right:20px;color:#fff;text-align:center;font-size:.88rem;letter-spacing:.08em}
-@media(max-width:600px){.gallery-rail{padding-left:20px;padding-right:20px}.gallery-set{gap:12px;padding-right:12px}.gallery-item{flex-basis:82vw;height:112vw;max-height:440px}}
+@media(max-width:600px){.gallery-set{gap:12px;padding-right:12px}.gallery-item{flex-basis:68vw;height:84vw;max-height:360px}}
 @media(prefers-reduced-motion:reduce){.gallery-track{animation:none}.gallery-item img{transition:none}}
  
 /* contacto */
@@ -319,10 +316,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section class="ig-work" id="trabajos" aria-label="Galería de trabajos">
   <div class="wrap">
-    <div class="hd">
-      <div><span class="eyebrow">RO Lashes Studio · Resultados</span><h2>Miradas que hablan.</h2></div>
-      <p>Cada mirada es diferente. Una selección de trabajos realizados en el estudio, cuidando cada detalle.</p>
-    </div>
     <div class="gallery-rail" tabindex="0" aria-label="Carrusel automático de trabajos. Se pausa al pasar el cursor o al navegar con el teclado.">
       <div class="gallery-track">
         <div class="gallery-set">
