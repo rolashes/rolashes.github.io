@@ -80,9 +80,8 @@ nav{gap:12px}.thm{margin-left:auto}.menu-toggle{display:block;margin-left:0}
 
 /* cabecera de formación con montaje de vídeo a pantalla completa */
 .training-hero{position:relative;isolation:isolate;display:flex;align-items:center;min-height:min(850px,92svh);padding:calc(env(safe-area-inset-top,0px) + 150px) 0 clamp(90px,12vw,150px);overflow:hidden;background:#25090b;color:#fff}
-.training-montage{position:absolute;z-index:-2;inset:0;display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:1fr 1fr;gap:3px;background:#25090b}
-.training-montage video{display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:cover}
-.training-montage video:first-child{grid-row:span 2}
+.training-montage{position:absolute;z-index:-2;inset:0;overflow:hidden;background:#25090b}
+.training-montage video{position:absolute;inset:0;display:block;width:100%;height:100%;min-width:100%;min-height:100%;object-fit:cover;object-position:center}
 .training-hero::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(25,5,8,.82) 0%,rgba(25,5,8,.62) 48%,rgba(25,5,8,.34) 100%),linear-gradient(0deg,rgba(25,5,8,.3),transparent 55%)}
 .training-hero-grid{width:100%;display:flex;align-items:center;position:relative}
 .training-hero-copy{max-width:760px;color:#fff}
