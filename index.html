@@ -172,8 +172,12 @@ section{padding:clamp(80px,12vw,150px) 0}
 .ig-work .hd{display:flex;justify-content:space-between;align-items:end;gap:22px;flex-wrap:wrap;margin-bottom:30px}
 .ig-work h2{font-size:clamp(2.3rem,5.6vw,4.6rem);color:var(--accent)}
 .ig-work .hd p{max-width:38ch;margin:0}
-.gallery-rail{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:clamp(22px,5vw,60px);padding:0 clamp(22px,5vw,60px) 18px;scrollbar-width:thin;scrollbar-color:var(--rojo) transparent;-webkit-overflow-scrolling:touch}
-.gallery-item{position:relative;display:block;flex:0 0 clamp(250px,31vw,390px);height:clamp(310px,38vw,460px);min-width:0;overflow:hidden;padding:0;border:0;border-radius:3px;background:var(--granate);cursor:zoom-in;text-align:left;scroll-snap-align:start}
+.gallery-rail{overflow:hidden;padding:0 clamp(22px,5vw,60px) 18px}
+.gallery-track{display:flex;width:max-content;will-change:transform;animation:gallery-marquee 42s linear infinite}
+.gallery-set{display:flex;flex:none;gap:16px;padding-right:16px}
+.gallery-rail:hover .gallery-track,.gallery-rail:focus-within .gallery-track{animation-play-state:paused}
+@keyframes gallery-marquee{to{transform:translateX(-50%)}}
+.gallery-item{position:relative;display:block;flex:0 0 clamp(250px,31vw,390px);height:clamp(310px,38vw,460px);min-width:0;overflow:hidden;padding:0;border:0;border-radius:3px;background:var(--granate);cursor:zoom-in;text-align:left}
 .gallery-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .gallery-item::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(35,5,8,.25));opacity:.75}
 .gallery-item:hover img{transform:scale(1.045)}
@@ -183,8 +187,8 @@ section{padding:clamp(80px,12vw,150px) 0}
 .gallery-lightbox img{display:block;max-width:min(92vw,1200px);max-height:86vh;object-fit:contain;box-shadow:0 20px 70px rgba(0,0,0,.35)}
 .gallery-close{position:absolute;top:22px;right:22px;width:46px;height:46px;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:transparent;color:white;font:400 1.8rem/1 var(--sans);cursor:pointer}
 .gallery-caption{position:absolute;bottom:20px;left:20px;right:20px;color:#fff;text-align:center;font-size:.88rem;letter-spacing:.08em}
-@media(max-width:600px){.gallery-rail{gap:12px;scroll-padding-inline:20px;padding-left:20px;padding-right:20px}.gallery-item{flex-basis:82vw;height:112vw;max-height:440px}}
-@media(prefers-reduced-motion:reduce){.gallery-item img{transition:none}}
+@media(max-width:600px){.gallery-rail{padding-left:20px;padding-right:20px}.gallery-set{gap:12px;padding-right:12px}.gallery-item{flex-basis:82vw;height:112vw;max-height:440px}}
+@media(prefers-reduced-motion:reduce){.gallery-track{animation:none}.gallery-item img{transition:none}}
  
 /* contacto */
 .ct .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,6vw,80px);align-items:start}
@@ -319,15 +323,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div><span class="eyebrow">RO Lashes Studio · Resultados</span><h2>Miradas que hablan.</h2></div>
       <p>Cada mirada es diferente. Una selección de trabajos realizados en el estudio, cuidando cada detalle.</p>
     </div>
-    <div class="gallery-rail" tabindex="0" aria-label="Galería de trabajos. Desliza horizontalmente para ver más fotografías.">
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-01.webp" aria-label="Ampliar fotografía de trabajo 1"><img src="assets/galeria/ro-lashes-01.webp" alt="Extensiones de pestañas, trabajo de RO Lashes" loading="lazy"></button>
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-02.webp" aria-label="Ampliar fotografía de trabajo 2"><img src="assets/galeria/ro-lashes-02.webp" alt="Detalle de extensiones de pestañas" loading="lazy"></button>
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-03.webp" aria-label="Ampliar fotografía de trabajo 3"><img src="assets/galeria/ro-lashes-03.webp" alt="Resultado de diseño de mirada" loading="lazy"></button>
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-04.webp" aria-label="Ampliar fotografía de trabajo 4"><img src="assets/galeria/ro-lashes-04.webp" alt="Trabajo de extensiones de pestañas" loading="lazy"></button>
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-05.webp" aria-label="Ampliar fotografía de trabajo 5"><img src="assets/galeria/ro-lashes-05.webp" alt="Detalle de mirada y pestañas" loading="lazy"></button>
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-06.webp" aria-label="Ampliar fotografía de trabajo 6"><img src="assets/galeria/ro-lashes-06.webp" alt="Resultado de extensiones de pestañas" loading="lazy"></button>
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-07.webp" aria-label="Ampliar fotografía de trabajo 7"><img src="assets/galeria/ro-lashes-07.webp" alt="Diseño de pestañas realizado en el estudio" loading="lazy"></button>
-      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-08.webp" aria-label="Ampliar fotografía de trabajo 8"><img src="assets/galeria/ro-lashes-08.webp" alt="Trabajo de belleza de mirada de RO Lashes" loading="lazy"></button>
+    <div class="gallery-rail" tabindex="0" aria-label="Carrusel automático de trabajos. Se pausa al pasar el cursor o al navegar con el teclado.">
+      <div class="gallery-track">
+        <div class="gallery-set">
+          <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-01.webp" aria-label="Ampliar fotografía de trabajo 1"><img src="assets/galeria/ro-lashes-01.webp" alt="Extensiones de pestañas, trabajo de RO Lashes" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-02.webp" aria-label="Ampliar fotografía de trabajo 2"><img src="assets/galeria/ro-lashes-02.webp" alt="Detalle de extensiones de pestañas" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-03.webp" aria-label="Ampliar fotografía de trabajo 3"><img src="assets/galeria/ro-lashes-03.webp" alt="Resultado de diseño de mirada" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-05.webp" aria-label="Ampliar fotografía de trabajo 4"><img src="assets/galeria/ro-lashes-05.webp" alt="Detalle de mirada y pestañas" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-06.webp" aria-label="Ampliar fotografía de trabajo 5"><img src="assets/galeria/ro-lashes-06.webp" alt="Resultado de extensiones de pestañas" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-07.webp" aria-label="Ampliar fotografía de trabajo 6"><img src="assets/galeria/ro-lashes-07.webp" alt="Diseño de pestañas realizado en el estudio" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-08.webp" aria-label="Ampliar fotografía de trabajo 7"><img src="assets/galeria/ro-lashes-08.webp" alt="Trabajo de belleza de mirada de RO Lashes" loading="lazy"></button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -580,16 +587,21 @@ upd();
   $('play').onclick=start;
 })();
 
-// Galería propia con ampliación de fotografías
+// Galería automática en bucle y ampliación de fotografías
 (function(){
+  var rail=document.querySelector('.gallery-rail'),track=rail.querySelector('.gallery-track'),set=track.querySelector('.gallery-set');
+  var duplicate=set.cloneNode(true);
+  duplicate.setAttribute('aria-hidden','true');
+  duplicate.inert=true;
+  track.appendChild(duplicate);
   var box=document.getElementById('gallery-lightbox'),large=document.getElementById('gallery-large'),close=box.querySelector('.gallery-close'),last=null;
-  document.querySelectorAll('[data-gallery]').forEach(function(item){
-    item.addEventListener('click',function(){
-      last=item;large.src=item.getAttribute('data-gallery');large.alt=item.querySelector('img').alt;
-      box.hidden=false;document.documentElement.style.overflow='hidden';close.focus();
-    });
+  rail.addEventListener('click',function(e){
+    var item=e.target.closest('[data-gallery]');
+    if(!item||!rail.contains(item))return;
+    last=item;large.src=item.getAttribute('data-gallery');large.alt=item.querySelector('img').alt;
+    box.hidden=false;document.documentElement.style.overflow='hidden';close.focus();
   });
-  function hide(){box.hidden=true;large.src='';document.documentElement.style.overflow='';if(last)last.focus()}
+  function hide(){box.hidden=true;large.src='';document.documentElement.style.overflow='';if(last&&!last.closest('[aria-hidden="true"]'))last.focus()}
   close.addEventListener('click',hide);
   box.addEventListener('click',function(e){if(e.target===box)hide()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)hide()});
