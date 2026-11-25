@@ -167,18 +167,27 @@ section{padding:clamp(80px,12vw,150px) 0}
 .tip p{margin:0;font-family:var(--display);font-size:1.45rem;line-height:1.15}
 .tip em{display:block;font:400 .98rem/1.45 var(--sans);font-style:normal;opacity:.78;margin-top:12px}
 
-/* trabajos de Instagram */
+/* galería de trabajos */
 .ig-work{background:var(--soft);overflow:hidden}
-.ig-work .hd{display:flex;justify-content:space-between;align-items:end;gap:22px;flex-wrap:wrap;margin-bottom:34px}
+.ig-work .hd{display:flex;justify-content:space-between;align-items:end;gap:22px;flex-wrap:wrap;margin-bottom:38px}
 .ig-work h2{font-size:clamp(2.3rem,5.6vw,4.6rem);color:var(--accent)}
 .ig-work .hd p{max-width:38ch;margin:0}
-.ig-rail{display:flex;gap:22px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:8px clamp(20px,5vw,56px) 28px;scrollbar-width:thin;scrollbar-color:var(--rojo) transparent}
-.ig-card{flex:0 0 360px;height:560px;min-width:0;align-self:flex-start;scroll-snap-align:start;background:transparent;border:0;border-radius:0;padding:0;overflow:hidden}
-.ig-card blockquote.instagram-media{width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;border:0!important;box-shadow:none!important}
-.ig-card iframe{max-width:100%!important}
-.ig-fallback{display:block;padding:18px 12px;text-align:center;color:var(--accent);font-weight:600}
-@media(max-width:600px){.ig-rail{gap:14px;padding-left:20px;padding-right:20px;scroll-snap-type:x mandatory;scroll-padding-inline:20px}.ig-card{flex-basis:min(326px,84vw);height:520px}.ig-work .hd{margin-bottom:24px}}
-@media(prefers-reduced-motion:reduce){.ig-rail{scroll-behavior:auto}}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(150px,18vw,230px);gap:14px}
+.gallery-item{position:relative;display:block;min-width:0;overflow:hidden;padding:0;border:0;border-radius:4px;background:var(--granate);cursor:zoom-in;text-align:left}
+.gallery-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gallery-item:nth-child(4){grid-column:span 2}
+.gallery-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .4s}
+.gallery-item::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(35,5,8,.38));opacity:.75}
+.gallery-item:hover img{transform:scale(1.045)}
+.gallery-item:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.gallery-lightbox[hidden]{display:none}
+.gallery-lightbox{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:rgba(25,5,7,.94)}
+.gallery-lightbox img{display:block;max-width:min(92vw,1200px);max-height:86vh;object-fit:contain;box-shadow:0 20px 70px rgba(0,0,0,.35)}
+.gallery-close{position:absolute;top:22px;right:22px;width:46px;height:46px;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:transparent;color:white;font:400 1.8rem/1 var(--sans);cursor:pointer}
+.gallery-caption{position:absolute;bottom:20px;left:20px;right:20px;color:#fff;text-align:center;font-size:.88rem;letter-spacing:.08em}
+@media(max-width:760px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,42vw,230px);gap:10px}.gallery-item:nth-child(1){grid-column:span 2;grid-row:span 2}.gallery-item:nth-child(4){grid-column:span 1}}
+@media(max-width:420px){.gallery-grid{grid-auto-rows:42vw;gap:8px}.gallery-item:nth-child(1){grid-row:span 2}}
+@media(prefers-reduced-motion:reduce){.gallery-item img{transition:none}}
  
 /* contacto */
 .ct .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,6vw,80px);align-items:start}
@@ -361,26 +370,29 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
-<section class="ig-work" id="trabajos" aria-label="Trabajos de Instagram">
-  <div class="ig-rail" tabindex="0" aria-label="Trabajos de RO Lashes. Desliza horizontalmente para ver las publicaciones.">
-      <article class="ig-card">
-    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DeHx3LbiIwM/" data-instgrm-version="14">
-      <a class="ig-fallback" href="https://www.instagram.com/p/DeHx3LbiIwM/" target="_blank" rel="noopener noreferrer">Ver publicación 1 en Instagram</a>
-    </blockquote>
-  </article>
-
-  <article class="ig-card">
-    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C1WobtVC4B9/?img_index=1" data-instgrm-version="14">
-      <a class="ig-fallback" href="https://www.instagram.com/p/C1WobtVC4B9/?img_index=1" target="_blank" rel="noopener noreferrer">Ver publicación 3 en Instagram</a>
-    </blockquote>
-  </article>
-  <article class="ig-card">
-    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C3P39DhCpm_/" data-instgrm-version="14">
-      <a class="ig-fallback" href="https://www.instagram.com/p/C3P39DhCpm_/" target="_blank" rel="noopener noreferrer">Ver publicación 4 en Instagram</a>
-    </blockquote>
-  </article>
+<section class="ig-work" id="trabajos" aria-label="Galería de trabajos">
+  <div class="wrap">
+    <div class="hd">
+      <div><span class="eyebrow">RO Lashes Studio · Resultados</span><h2>Miradas que hablan.</h2></div>
+      <p>Cada mirada es diferente. Una selección de trabajos realizados en el estudio, cuidando cada detalle.</p>
+    </div>
+    <div class="gallery-grid">
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-01.webp" aria-label="Ampliar fotografía de trabajo 1"><img src="assets/galeria/ro-lashes-01.webp" alt="Extensiones de pestañas, trabajo de RO Lashes" loading="lazy"></button>
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-02.webp" aria-label="Ampliar fotografía de trabajo 2"><img src="assets/galeria/ro-lashes-02.webp" alt="Detalle de extensiones de pestañas" loading="lazy"></button>
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-03.webp" aria-label="Ampliar fotografía de trabajo 3"><img src="assets/galeria/ro-lashes-03.webp" alt="Resultado de diseño de mirada" loading="lazy"></button>
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-04.webp" aria-label="Ampliar fotografía de trabajo 4"><img src="assets/galeria/ro-lashes-04.webp" alt="Trabajo de extensiones de pestañas" loading="lazy"></button>
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-05.webp" aria-label="Ampliar fotografía de trabajo 5"><img src="assets/galeria/ro-lashes-05.webp" alt="Detalle de mirada y pestañas" loading="lazy"></button>
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-06.webp" aria-label="Ampliar fotografía de trabajo 6"><img src="assets/galeria/ro-lashes-06.webp" alt="Resultado de extensiones de pestañas" loading="lazy"></button>
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-07.webp" aria-label="Ampliar fotografía de trabajo 7"><img src="assets/galeria/ro-lashes-07.webp" alt="Diseño de pestañas realizado en el estudio" loading="lazy"></button>
+      <button class="gallery-item" type="button" data-gallery="assets/galeria/ro-lashes-08.webp" aria-label="Ampliar fotografía de trabajo 8"><img src="assets/galeria/ro-lashes-08.webp" alt="Trabajo de belleza de mirada de RO Lashes" loading="lazy"></button>
+    </div>
   </div>
 </section>
+<div class="gallery-lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada" hidden>
+  <button class="gallery-close" type="button" aria-label="Cerrar fotografía">&times;</button>
+  <img src="" alt="" id="gallery-large">
+  <p class="gallery-caption">RO LASHES STUDIO</p>
+</div>
 
 <section class="ct" id="contacto">
   <div class="wrap grid">
@@ -569,13 +581,19 @@ upd();
   $('play').onclick=start;
 })();
 
-// Previsualizaciones de publicaciones de Instagram
+// Galería propia con ampliación de fotografías
 (function(){
-  var script=document.createElement('script');
-  script.async=true;
-  script.src='https://www.instagram.com/embed.js';
-  script.onload=function(){if(window.instgrm&&window.instgrm.Embeds)window.instgrm.Embeds.process()};
-  document.body.appendChild(script);
+  var box=document.getElementById('gallery-lightbox'),large=document.getElementById('gallery-large'),close=box.querySelector('.gallery-close'),last=null;
+  document.querySelectorAll('[data-gallery]').forEach(function(item){
+    item.addEventListener('click',function(){
+      last=item;large.src=item.getAttribute('data-gallery');large.alt=item.querySelector('img').alt;
+      box.hidden=false;document.documentElement.style.overflow='hidden';close.focus();
+    });
+  });
+  function hide(){box.hidden=true;large.src='';document.documentElement.style.overflow='';if(last)last.focus()}
+  close.addEventListener('click',hide);
+  box.addEventListener('click',function(e){if(e.target===box)hide()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)hide()});
 })();
 
 // tema claro / oscuro: por defecto el del dispositivo; el botón guarda la elección del visitante
